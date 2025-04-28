@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Builder</title>
+  <link rel="stylesheet" href="resume.css">
+</head>
+<body>
+
+  <fieldset style="width: 30%;">
+  <legend>Resume Builder Form</legend>
+  <form id="resumeForm">
+    <!-- Name -->
+    <input type="text" name="name" id="fullName" required placeholder="Full Name"> <br><br>
+
+    <!-- Email Address -->
+    <input type="email" name="email" id="email" required placeholder="Email Address"> <br><br>
+
+    <!-- Phone Number -->
+    <input type="tel" name="phone" id="phone" required placeholder="Phone Number"><br><br>
+
+    <!-- Address -->
+    <textarea name="address" id="address" rows="3" placeholder="Address"></textarea> <br><br>
+
+    <!-- LinkedIn -->
+    <label>LinkedIn URL:</label>
+    <input type="url" name="linkedin" id="linkedin"> <br><br>
+    <!-- <textarea name="summary" id="summary" rows="4" placeholder="Profile Summary"></textarea> <br><br> -->
+  
+    <!-- <label>Technical Skills:</label>
+    <input type="text" name="tech" id="techSkills"><br><br> -->
+
+    <!-- Technical Skills -->
+    <label>Technical Skills:</label>
+<div id="techSkillsContainer">
+  <div style="display: flex; gap: 10px; align-items: center;">
+    <input type="text" name="tech" class="techSkills">
+    <button type="button" onclick="addTechSkill()"  id="add">+</button>
+  </div>
+</div>
+<br><br>
+
+
+      <!-- Non-Technical skills  -->
+      <label>Non Technical Skills:</label>
+      <div id="nonTechSkillsContainer">
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <input type="text" name="nontech" class="nonTechSkills">
+          <button type="button" onclick="addNonTechSkill()"  id="add">+</button>
+        </div>
+        </div>
+      <br><br>
+
+      <!-- Education  -->
+      <label>Education:</label>
+      <div id="educationContainer">
+        <div style="display: flex; flex-direction:column; gap: 10px; align-items: center;">
+          <div style="display: flex; gap: 10px; align-items: center;">
+          <input type="text" name="institute" placeholder="Institute Name" style="margin-right: 20px;">
+          <input type="text" name="degree" placeholder="Degree / Course">
+          </div>
+          <div style="display: flex; gap: 10px; align-items: start; width:100%">
+          <input type="text" name="year" placeholder="Year of Completion" style="width: 50%;">
+          <button type="button" onclick="addEducation()" id="add" style="margin-top: 8px;">+</button>
+          </div>
+        </div>
+      </div>
+      <br><br>
+      
+      <!-- Work experience  -->
+      <label>Work Experience:</label>
+      <div id="experienceContainer">
+        <div  style="display: flex; flex-direction:column; gap: 10px; align-items: center;">
+          <div style="display: flex; gap: 10px; align-items: center;">
+          <input type="text" name="company" placeholder="Company Name"> 
+          <input type="text" name="role" placeholder="Role / Position">
+          <input type="text" name="duration" placeholder="Duration">
+          </div>
+          <div style="display: flex; gap: 10px; align-items: start; width:100%">
+          <textarea name="experienceDesc" rows="3" placeholder="Describe your responsibilities..."></textarea>
+          <button type="button" onclick="addExperience()" id="add" style="margin-top: 23px;">+</button>
+          </div>
+        </div>
+      </div>
+      <br><br>
+
+      <!-- Certificate  -->
+      <label>Certifications:</label>
+      <div id="certificateContainer">
+        <div style="display: flex; gap: 10px;flex-direction:column; align-items: center;">
+          <div style="display: flex; gap: 10px; align-items: center;">
+          <input type="text" name="certificate" placeholder="Certificate Name" style="margin-right: 20px;"> 
+          <input type="text" name="platform" placeholder="Platform (e.g., Coursera)"> 
+          </div>
+          <div style="display: flex; gap: 10px; align-items: start; width:100%">
+          <input type="text" name="certiYear" placeholder="Completion Year" style="width: 50%;">
+          <button type="button" onclick="addCertificate()" id="add" style="margin-top: 8px;">+</button>
+          </div>
+        </div>
+      </div>
+      <br><br>
+    <!-- Languages -->
+    <label>Languages Known:</label>
+    <input type="checkbox" name="languages" id="langEnglish" value="english"> English
+    <input type="checkbox" name="languages" id="langHindi" value="hindi"> Hindi
+    <input type="checkbox" name="languages" id="langPunjabi" value="punjabi"> Punjabi <br><br>
+  
+    <!-- Profile Photo -->
+    <label>Upload Profile Photo:</label>
+    <input type="file" name="photo" id="photo" accept="image/*">
+  
+    <br><br>
+    <!-- Submit button -->
+    <button type="submit" class="submit">Generate Resume</button>
+  </form>
+  
+  </fieldset>
+
+  
+  <div id="generatedResume" style="display:none; border: 1px solid #ccc; padding: 20px;"></div>
+
+  <script>
+    function addTechSkill() {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.className = "techSkills";
+      document.getElementById("techSkillsContainer").appendChild(input);
+    }
+
+   
+  function addNonTechSkill() {
+    const div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.gap = "10px";
+    div.style.alignItems = "center";
+    div.innerHTML = `
+      <input type="text" name="nontech" class="nonTechSkills">
+    `;
+    document.getElementById("nonTechSkillsContainer").appendChild(div);
+  }
+  
+
+    function addEducation() {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <input type="text" name="institute" placeholder="Institute Name">
+        <input type="text" name="degree" placeholder="Degree / Course">
+        <input type="text" name="year" placeholder="Year of Completion">
+      `;
+      document.getElementById("educationContainer").appendChild(div);
+    }
+
+    function addExperience() {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <input type="text" name="company" placeholder="Company Name">
+        <input type="text" name="role" placeholder="Role / Position">
+        <input type="text" name="duration" placeholder="Duration">
+        <textarea name="experienceDesc" rows="3" placeholder="Describe your responsibilities..."></textarea>
+      `;
+      document.getElementById("experienceContainer").appendChild(div);
+    }
+
+    function addCertificate() {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <input type="text" name="certificate" placeholder="Certificate Name">
+        <input type="text" name="platform" placeholder="Platform (e.g., Coursera)">
+        <input type="text" name="certiYear" placeholder="Completion Year">
+      `;
+      document.getElementById("certificateContainer").appendChild(div);
+    } 
+  </script>
+
+  <script src="resume.js"></script>
+</body>
+</html>
